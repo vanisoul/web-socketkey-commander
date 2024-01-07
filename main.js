@@ -9,10 +9,10 @@ const heartbeatInterval = 30000; // 心跳檢查間隔時間（毫秒）
 const allowedKeys = ['enter', 'space', 'up', 'down', 'left', 'right'];
 const allowedCombos = ['alt+tab', 'alt+f4'];
 
-function consoleLog(msg) {
+function consoleLog(msg, ...data) {
     // 加上時間
     const time = dayjs().format('YYYY-MM-DD HH:mm:ss');
-    console.log(`[${time}] ${msg}`);
+    console.log(`[${time}] ${msg}`, ...data);
 }
 
 function handleMouseControl(command) {
@@ -50,16 +50,16 @@ function handleMouseControl(command) {
 }
 
 function handleKeyboardCombo(command) {
-    const parts = msg.split('+');
+    const parts = command.split('+');
     if (allowedCombos.includes(command.toString()) && parts.length === 2) {
         robot.keyTap(parts[1], parts[0]);
     }
 }
 
-function handleSingleKey(key) {
+function handleSingleKey(command) {
     // 執行單鍵操作
-    if (key.length === 1 || allowedKeys.includes(key)) {
-        robot.keyTap(key);
+    if (command.length === 1 || allowedKeys.includes(command)) {
+        robot.keyTap(command);
     }
 }
 
