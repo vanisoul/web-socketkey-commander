@@ -96,7 +96,6 @@ function connectWebSocket() {
     ws.on('close', function close() {
         consoleLog('連接已關閉');
         isAlive = false;
-        setTimeout(connectWebSocket, reconnectInterval);
     });
 
     ws.on('error', function error(error) {
