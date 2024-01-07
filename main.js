@@ -1,5 +1,6 @@
 const WebSocket = require('ws');
 const robot = require("robotjs");
+const dayjs = require('dayjs');
 
 const webSocketUrl = process.env.WebSocketUrl ?? "ws://127.0.0.1"
 
@@ -10,9 +11,8 @@ const allowedCombos = ['alt+tab', 'alt+f4'];
 
 function consoleLog(msg) {
     // 加上時間
-    const now = new Date();
-    const time = now.toLocaleTimeString();
-    consoleLog(`[${time}] ${msg}`);
+    const time = dayjs().format('YYYY-MM-DD HH:mm:ss');
+    console.log(`[${time}] ${msg}`);
 }
 
 function handleMouseControl(command) {
